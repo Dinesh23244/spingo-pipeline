@@ -233,19 +233,37 @@ sample2_2.fastq.gz
 
 ## 📊 Output Files
 
-### Individual Sample Results
+### Pipeline Workflow
 
-For each input sample, a classification file is generated:
+The pipeline produces outputs in two stages:
 
-**File:** `<sample_name>_spingo.out.txt`
+**Stage 1: Individual Sample Processing**
+- Each sample is processed independently
+- SPINGO generates taxonomic classification for each sample
+- Output: `<sample_name>_spingo.out.txt` for each input file
+
+**Stage 2: Matrix Generation**
+- After ALL samples are processed
+- Perl script (`create_species_matrix.pl`) combines all individual results
+- Output: `species_matrix_<study_name>.txt` (final abundance matrix)
+
+---
+
+### Individual SPINGO Results
+
+**File:** `<sample_name>_spingo.out.txt` (one per sample)
 
 Tab-separated taxonomic classification results for each sample, containing sequence identifiers, similarity scores, taxonomic assignments (L1, L2, L3), and bootstrap confidence scores.
 
+**Generated during**: Stage 1 (individual sample processing)
+
 ### Species Abundance Matrix
 
-**File:** `species_matrix_<study_name>.txt`
+**File:** `species_matrix_<study_name>.txt` (one per study)
 
 A combined matrix with taxonomic abundances across all samples, suitable for downstream analysis in R, Python, etc.
+
+**Generated during**: Stage 2 (after all samples processed, using Perl script)
 
 ### Intermediate Files
 
@@ -470,14 +488,21 @@ graph TD
     PairedNaming --> RunPaired[🚀 Run spingo_paired.sh]
     SingleNaming --> RunSingle[🚀 Run spingo_single.sh]
     
-    RunPaired --> Processing[⚡ Processing Pipeline]
-    RunSingle --> Processing
     
-    Processing --> Steps[1. Decompress FASTQ<br/>2. Convert to FASTA<br/>3. SPINGO Classification<br/>4. Generate Matrix]
+    RunPaired --> Stage1[⚡ Stage 1: Process Each Sample]
+    RunSingle --> Stage1
     
-    Steps --> Output[📊 Output Files]
-    Output --> IndividualResults[Individual: SAMPLE_spingo.out.txt]
-    Output --> MatrixFile[Matrix: species_matrix_STUDY.txt]
+    Stage1 --> SampleSteps[1. Decompress FASTQ<br/>2. Convert to FASTA<br/>3. SPINGO Classification]
+    
+    SampleSteps --> IndividualFiles[📄 Individual Outputs<br/>sample_spingo.out.txt for each file]
+    
+    IndividualFiles --> AllProcessed{All Samples<br/>Processed?}
+    AllProcessed -->|No| Stage1
+    AllProcessed -->|Yes| Stage2[⚡ Stage 2: Generate Matrix]
+    
+    Stage2 --> PerlScript[Perl Script: create_species_matrix.pl<br/>Combines all *_spingo.out.txt files]
+    
+    PerlScript --> MatrixFile[📊 Final Output<br/>species_matrix_STUDY.txt]
     
     MatrixFile --> Analysis[📈 Downstream Analysis]
     Analysis --> Complete([✅ Analysis Complete])

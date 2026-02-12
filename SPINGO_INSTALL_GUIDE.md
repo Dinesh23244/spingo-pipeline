@@ -226,14 +226,28 @@ bash spingo_single.sh 16S_amplicon_study 8
 
 ### Pipeline Workflow
 
+The pipeline operates in two stages:
+
 **Paired-End:**
 ```
-FASTQ.gz → Decompress → Merge R1+R2 → Convert to FASTA → SPINGO → Species Matrix
+Stage 1 (Per Sample):
+  FASTQ.gz → Decompress → Merge R1+R2 → Convert to FASTA → SPINGO 
+  → Output: sample_spingo.out.txt
+
+Stage 2 (All Samples):
+  All *_spingo.out.txt files → Perl Script (create_species_matrix.pl)
+  → Output: species_matrix_<study_name>.txt
 ```
 
 **Single-End:**
 ```
-FASTQ.gz → Decompress → Convert to FASTA → SPINGO → Species Matrix
+Stage 1 (Per Sample):
+  FASTQ.gz → Decompress → Convert to FASTA → SPINGO
+  → Output: sample_spingo.out.txt
+
+Stage 2 (All Samples):
+  All *_spingo.out.txt files → Perl Script (create_species_matrix.pl)
+  → Output: species_matrix_<study_name>.txt
 ```
 
 ---
