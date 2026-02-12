@@ -4,6 +4,14 @@ A comprehensive Shell script pipeline for processing 16S microbiome sequences us
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+## ⬇️ One-Click Download
+
+> **New to GitHub?** Click the button below to download the pre-configured SPINGO package directly — no Git or command-line knowledge required.
+
+[![Download SPINGO Package](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
+
+After downloading, follow the [SPINGO Installation Guide](SPINGO_INSTALL_GUIDE.md) to set it up.
+
 ## 📋 Overview
 
 This repository provides automated pipeline scripts that streamline the processing of 16S rRNA gene sequencing data from raw FASTQ files to taxonomic classification results. The pipeline handles:
@@ -67,6 +75,8 @@ This repository includes a **pre-configured SPINGO installation package** (`spin
 **Using the provided tar file:**
 
 > **📌 See detailed step-by-step instructions in [SPINGO_INSTALL_GUIDE.md](SPINGO_INSTALL_GUIDE.md)**
+>
+> **📥 [Click here to download spingo_installed_with_RDP_database.tar.gz](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)**
 
 ```bash
 # Navigate to the directory containing the tar file
