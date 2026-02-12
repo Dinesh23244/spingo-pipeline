@@ -154,25 +154,11 @@ Or download and extract the files manually to any directory.
 chmod +x spingo_single.sh spingo_paired.sh
 ```
 
-### Step 3: Configure SPINGO Paths
-
-The scripts expect SPINGO in `/home/dinesh/SPINGO`. If your installation is different, edit the scripts:
-
-``` bash
-# Edit lines 28-29 in both scripts
-spingo_directory="/home/YOUR_USERNAME/SPINGO/spingo"
-reference_data="/home/YOUR_USERNAME/SPINGO/database/RDP_11.2.species.fa"
-```
-
-Or set environment variables (recommended for portability):
-
-``` bash
-export SPINGO_HOME="$HOME/SPINGO"
-```
-
-### Step 4: Set Up Perl Script
+### Step 3: Set Up Perl Script
 
 Ensure `create_species_matrix.pl` is in the same directory as your scripts or in your working directory when running the pipeline.
+
+> **📌 Note:** The scripts automatically detect your HOME directory and look for SPINGO installation at `~/SPINGO/`. No manual path configuration needed!
 
 ## 📖 Usage
 

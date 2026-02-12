@@ -2,6 +2,72 @@
 
 This guide provides step-by-step instructions for installing SPINGO and setting up the RDP database.
 
+## 📥 Downloading the SPINGO Package
+
+Before installation, you need to download the `spingo_installed_with_RDP_database.tar.gz` file. This is a large file (~500 MB) containing the pre-configured SPINGO installation with the RDP database.
+
+### Method 1: One-Click Download (Recommended)
+
+Click the button below to download the package directly:
+
+[![Download SPINGO Package](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
+
+**Or use this direct link:**
+```
+https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz
+```
+
+**Using command line:**
+```bash
+# Download using wget
+wget https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz
+
+# Or using curl
+curl -L -O https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz
+```
+
+### Method 2: GitHub LFS (Alternative)
+
+If you prefer to use Git with Large File Storage (LFS):
+
+**Prerequisites:**
+- Git installed on your system
+- Git LFS extension installed
+
+**Install Git LFS (if not already installed):**
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-get install git-lfs
+git lfs install
+```
+
+**CentOS/RHEL:**
+```bash
+sudo yum install git-lfs
+git lfs install
+```
+
+**macOS:**
+```bash
+brew install git-lfs
+git lfs install
+```
+
+**Download using Git LFS:**
+```bash
+# Clone the repository with LFS files
+git clone https://github.com/Dinesh23244/spingo-pipeline.git
+cd spingo-pipeline
+
+# Pull the large files
+git lfs pull
+```
+
+> **Note:** The large file will be automatically downloaded when you clone the repository if Git LFS is properly configured.
+
+---
+
 ## Prerequisites
 
 - **Linux operating system** (SPINGO is designed for Linux environments)
