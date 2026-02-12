@@ -144,30 +144,15 @@ This repository provides two automated scripts:
 
 Before running the scripts, ensure you have:
 
-- ✅ SPINGO successfully installed (completed steps above)
-- ✅ Required dependencies:
+- ✅ SPINGO successfully installed in `~/SPINGO/` (completed steps above)
+- ✅ **Required dependencies:**
   - `seqtk` (sequence toolkit)
-  - `GNU Parallel` (parallel processing)
   - `perl` (for matrix creation)
-  - `mail` utility (optional, for email notifications)
+- ✅ **Optional dependencies:**
+  - `GNU Parallel` (for parallel processing - scripts default to sequential)
+  - `mail` utility (for email notifications)
 
----
-
-### Script Configuration
-
-**IMPORTANT:** Both scripts contain hardcoded paths that you **must update** before running.
-
-**Edit lines 28-29 in both scripts:**
-```bash
-spingo_directory="/home/dinesh/SPINGO/spingo"
-reference_data="/home/dinesh/SPINGO/database/RDP_11.2.species.fa"
-```
-
-**Change to your actual installation paths:**
-```bash
-spingo_directory="/path/to/your/SPINGO/spingo"
-reference_data="/path/to/your/SPINGO/database/RDP_11.2.species.fa"
-```
+> **📌 Note:** The scripts automatically detect your HOME directory and look for SPINGO installation at `~/SPINGO/`. No manual path configuration needed!
 
 ---
 
@@ -201,7 +186,7 @@ bash spingo_paired.sh gut_microbiome_study 8
 
 **Output:**
 - Individual results: `SAMPLE_spingo.out.txt` for each sample
-- Final matrix: `abundance_table_<study_name>.txt`
+- Final matrix: `species_matrix_<study_name>.txt`
 
 ---
 

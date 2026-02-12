@@ -8,30 +8,14 @@ This guide explains how to use the SPINGO pipeline scripts (`spingo_paired.sh` a
 
 Before running the scripts, ensure you have:
 
-- ✅ SPINGO successfully installed (see [SPINGO_INSTALL_GUIDE.md](SPINGO_INSTALL_GUIDE.md))
+- ✅ SPINGO successfully installed in `~/SPINGO/` (see [SPINGO_INSTALL_GUIDE.md](SPINGO_INSTALL_GUIDE.md))
 - ✅ Required dependencies:
   - `seqtk` (sequence toolkit)
-  - `GNU Parallel` (parallel processing) [optional, till you enable the parallel processing provided in the script]
+  - `GNU Parallel` (optional, for parallel processing)
   - `perl` (for matrix creation) 
   - `mail` utility (optional, for email notifications)
 
----
-
-## Script Configuration
-
-**IMPORTANT:** Both scripts contain hardcoded paths that you **must update** before running.
-
-**Edit lines 28-29 in both scripts:**
-```bash
-spingo_directory="/home/dinesh/SPINGO/spingo"
-reference_data="/home/dinesh/SPINGO/database/RDP_11.2.species.fa"
-```
-
-**Change to your actual installation paths:**
-```bash
-spingo_directory="/path/to/your/SPINGO/spingo"
-reference_data="/path/to/your/SPINGO/database/RDP_11.2.species.fa"
-```
+> **📌 Note:** The scripts automatically detect your HOME directory and look for SPINGO installation at `~/SPINGO/`. No manual path configuration needed!
 
 ---
 
@@ -65,7 +49,7 @@ bash spingo_paired.sh gut_microbiome_study 8
 
 **Output:**
 - Individual results: `SAMPLE_spingo.out.txt` for each sample
-- Final matrix: `abundance_table_<study_name>.txt`
+- Final matrix: `species_matrix_<study_name>.txt`
 
 ---
 

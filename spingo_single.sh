@@ -89,7 +89,13 @@ export -f process_sample
 
   echo "Initiation of preprocess ***[ Unzip => *.fasta conversion ] and run spingo***"
 
-  for f in *.fastq.gz; do echo "$f"; done | parallel -j 1 process_sample {}
+  # Sequential processing (default - no parallel dependency required)
+  for f in *.fastq.gz; do process_sample $f; done
+
+  # Parallel processing (optional - uncomment to enable, requires GNU Parallel)
+  # Uncomment the line below and comment out the sequential loop above to use parallel processing
+  #for f in *.fastq.gz; do echo "$f"; done | parallel -j 1 process_sample {}
+  # Note: Change -j 1 to -j N for N parallel jobs
 
   echo "Taxonomical classification for all files were done..."
 

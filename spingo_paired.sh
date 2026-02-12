@@ -88,7 +88,13 @@ export spingo_directory reference_data sequence_directory threads
 
   echo "Initiation of preprocess ***[ Unzip => Merge => *.fasta conversion ] and run spingo***"
 
-  for f in *_1.fastq.gz; do echo "${f%_1.fastq.gz}"; done | parallel -j 1 process_sample {}
+  # Sequential processing (default - no parallel dependency required)
+  for f in *_1.fastq.gz; do file_name=${f%_1.fastq.gz}; process_sample $file_name; done
+
+  # Parallel processing (optional - uncomment to enable, requires GNU Parallel)
+  # Uncomment the line below and comment out the sequential loop above to use parallel processing
+  #for f in *_1.fastq.gz; do echo "${f%_1.fastq.gz}"; done | parallel -j 1 process_sample {}
+  # Note: Change -j 1 to -j N for N parallel jobs
 
   echo "Taxonomical classification for all files were done..."
 
@@ -100,7 +106,7 @@ export spingo_directory reference_data sequence_directory threads
 
   ls *spingo.out.txt > "spingo_file_list.txt"
 
-  perl create_species_matrix.pl "spingo_file_list.txt" > "abundance_table_${study_name}.txt"
+  perl create_species_matrix.pl "spingo_file_list.txt" > "species_matrix_${study_name}.txt"
 
   echo "******________Mission Accomplished________******"
 
