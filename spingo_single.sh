@@ -103,13 +103,28 @@ export -f process_sample
 # SECTION 5: Create Species Matrix
 # ============================================================
 
-  echo "Creating species abundance matrix..."
+  # Check if Perl script exists
+  if [ ! -f "create_species_matrix.pl" ]; then
+      echo "=============================================="
+      echo "WARNING: create_species_matrix.pl not found!"
+      echo "=============================================="
+      echo "Individual SPINGO output files have been generated successfully."
+      echo "However, the species matrix cannot be created without the Perl script."
+      echo ""
+      echo "See SPINGO_SCRIPTS_USAGE_GUIDE.md for instructions on generating the matrix manually."
+      echo "=============================================="
+  else
+      echo "Creating species abundance matrix..."
 
-  ls *spingo.out.txt > "spingo_file_list.txt"
+      ls *spingo.out.txt > "spingo_file_list.txt"
 
-  perl create_species_matrix.pl "spingo_file_list.txt" > "species_matrix_${study_name}.txt"
+      perl create_species_matrix.pl "spingo_file_list.txt" > "species_matrix_${study_name}.txt"
+
+      echo "Species matrix created: species_matrix_${study_name}.txt"
+  fi
 
   echo "******________Mission Accomplished________******"
+
 
 # ============================================================
 # SECTION 6: Email Notification

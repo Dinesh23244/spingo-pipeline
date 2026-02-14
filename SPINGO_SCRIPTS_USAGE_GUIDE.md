@@ -14,6 +14,9 @@ Before running the scripts, ensure you have:
   - `GNU Parallel` (optional, for parallel processing)
   - `perl` (for matrix creation) 
   - `mail` utility (optional, for email notifications)
+- ✅ Required files in your working directory:
+  - `spingo_paired.sh` or `spingo_single.sh` (the pipeline script)
+  - `create_species_matrix.pl` (Perl script for generating species abundance matrix)
 
 > **📌 Note:** The scripts automatically detect your HOME directory and look for SPINGO installation at `~/SPINGO/`. No manual path configuration needed!
 
@@ -111,6 +114,67 @@ Stage 1 (Per Sample):
 Stage 2 (All Samples):
   All *_spingo.out.txt files → Perl Script (create_species_matrix.pl)
   → Output: species_matrix_<study_name>.txt
+```
+
+---
+
+## Manual Species Matrix Generation
+
+If the Perl script (`create_species_matrix.pl`) was missing during your initial pipeline run, you can generate the species matrix manually after the fact.
+
+### Prerequisites
+
+- Individual SPINGO output files (`*_spingo.out.txt`) already exist
+- `create_species_matrix.pl` is available in your working directory
+- Perl is installed
+
+### Command
+
+```bash
+ls *spingo.out.txt > "spingo_file_list.txt"; perl create_species_matrix.pl "spingo_file_list.txt" > "species_matrix_your_study_name.txt"
+```
+
+### Step-by-Step Instructions
+
+1. **Navigate to your SPINGO output directory:**
+   ```bash
+   cd /path/to/your/spingo/output
+   ```
+
+2. **Ensure the Perl script is present:**
+   ```bash
+   ls create_species_matrix.pl
+   ```
+   If not found, copy it to this directory.
+
+3. **Generate the species matrix:**
+   ```bash
+   ls *spingo.out.txt > "spingo_file_list.txt"
+   perl create_species_matrix.pl "spingo_file_list.txt" > "species_matrix_your_study_name.txt"
+   ```
+   Replace `your_study_name` with your actual study name.
+
+### What This Does
+
+1. Lists all SPINGO output files and saves the list to `spingo_file_list.txt`
+2. Runs the Perl script to combine all individual results
+3. Outputs the final species abundance matrix
+
+### Example
+
+```bash
+# Navigate to your SPINGO output directory
+cd ~/microbiome_data/gut_samples
+
+# Verify Perl script is present
+ls create_species_matrix.pl
+
+# Generate matrix
+ls *spingo.out.txt > "spingo_file_list.txt"
+perl create_species_matrix.pl "spingo_file_list.txt" > "species_matrix_gut_study_2024.txt"
+
+# Verify output
+ls -lh species_matrix_gut_study_2024.txt
 ```
 
 ---
