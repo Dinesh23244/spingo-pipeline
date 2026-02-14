@@ -4,13 +4,20 @@ A comprehensive Shell script pipeline for processing 16S microbiome sequences us
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## ⬇️ One-Click Download
+## ⬇️ One-Click Download & Installation
 
-> **New to GitHub?** Click the button below to download the pre-configured SPINGO package directly — no Git or command-line knowledge required.
+> **New to GitHub?** Use the options below for quick setup.
 
 [![Download SPINGO Package](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
 
-After downloading, follow the [SPINGO Installation Guide](SPINGO_INSTALL_GUIDE.md) to set it up.
+**One-Click Installation Command:**
+```bash
+cd ~; wget https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz; tar -xzvf ~/spingo_installed_with_RDP_database.tar.gz; cd ~/SPINGO; ./spingo -h; cd database; make; cd ~
+```
+
+> **📌 Copy the command above and paste it into your Linux terminal for automatic download and installation.**
+
+After installation, follow the [SPINGO Scripts Usage Guide](SPINGO_SCRIPTS_USAGE_GUIDE.md) to run your analysis.
 
 ## 📋 Overview
 
@@ -87,135 +94,70 @@ sudo yum install parallel mailx
 
 ## 🚀 SPINGO Installation
 
-This repository includes a **pre-configured SPINGO installation package** (`spingo_installed_with_RDP_database.tar.gz`) that contains: - ✅ SPINGO executable (pre-compiled) - ✅ RDP 11.2 reference database (ready to use) - ✅ All necessary utilities and scripts
+This repository includes a **pre-configured SPINGO installation package** (`spingo_installed_with_RDP_database.tar.gz`) that contains:
+- ✅ SPINGO executable (pre-compiled)
+- ✅ RDP 11.2 reference database (ready to use)
+- ✅ All necessary utilities and scripts
 
-### 📥 Quick Installation (Recommended)
+> **📌 For complete installation instructions, see [SPINGO_INSTALL_GUIDE.md](SPINGO_INSTALL_GUIDE.md)**
 
-**Using the provided tar file:**
+**Alternative:** Install from the [official SPINGO repository](https://github.com/GuyAllard/SPINGO)
 
-> **📌 See detailed step-by-step instructions in [SPINGO_INSTALL_GUIDE.md](SPINGO_INSTALL_GUIDE.md)**
->
-> **📥 [Click here to download spingo_installed_with_RDP_database.tar.gz](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)**
+## 💻 Getting Started
 
-``` bash
-# Navigate to the directory containing the tar file
-cd /path/to/directory/containing/tar/file
+### Option 1: Use One-Click Installation (Recommended)
 
-# Run the complete installation
-cp spingo_installed_with_RDP_database.tar.gz ~; tar -xzvf ~/spingo_installed_with_RDP_database.tar.gz; cd ~/SPINGO; ./spingo -h; cd database; make; cd ~
-```
+Use the one-click installation command at the top of this page for automatic setup.
 
-**What this does:** 1. Copies the archive to your home directory [check point 1 is to avoid error;Don't remove it] 2. Extracts SPINGO and database files 3. Verifies SPINGO installation 4. Builds the RDP reference database
+### Option 2: Clone This Repository
 
-**Verification:**
+**If the repository contains large files (Git LFS):**
 
-``` bash
-# Check SPINGO is working
-~/SPINGO/spingo -h
+1. **Install Git LFS:**
+   ```bash
+   # Ubuntu/Debian
+   sudo apt-get install git-lfs
+   
+   # CentOS/RHEL
+   sudo yum install git-lfs
+   
+   # Initialize Git LFS
+   git lfs install
+   ```
 
-# Verify database exists
-ls ~/SPINGO/database/RDP_11.2.species.fa
-```
+2. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Dinesh23244/spingo-pipeline.git
+   cd spingo-pipeline
+   
+   # Pull large files
+   git lfs pull
+   ```
 
-### 🔧 Alternative: Install from GitHub
+3. **Make scripts executable:**
+   ```bash
+   chmod +x spingo_single.sh spingo_paired.sh
+   ```
 
-If you prefer to install SPINGO from the official source, visit the **official SPINGO GitHub repository**:
+4. **Ensure `create_species_matrix.pl` is in your working directory**
 
-**🔗 <https://github.com/GuyAllard/SPINGO>**
-
-**Quick installation from GitHub:**
-
-``` bash
-cd ~
-git clone https://github.com/GuyAllard/SPINGO.git
-cd SPINGO
-./spingo -h  # Verify executable
-cd database
-make  # Generate database (downloads ~500 MB, takes 10-15 minutes)
-```
-
-For detailed installation instructions, compilation from source, and troubleshooting, refer to the official repository's README and documentation.
-
-## 💻 Pipeline Installation
-
-### Step 1: Download This Repository
-
-``` bash
-cd ~/
-git clone <your-repository-url> spingo-pipeline
-cd spingo-pipeline
-```
-
-Or download and extract the files manually to any directory.
-
-### Step 2: Make Scripts Executable
-
-``` bash
-chmod +x spingo_single.sh spingo_paired.sh
-```
-
-### Step 3: Set Up Perl Script
-
-Ensure `create_species_matrix.pl` is in the same directory as your scripts or in your working directory when running the pipeline.
-
-> **📌 Note:** The scripts automatically detect your HOME directory and look for SPINGO installation at `~/SPINGO/`. No manual path configuration needed!
+> **📌 For detailed usage instructions, see [SPINGO_SCRIPTS_USAGE_GUIDE.md](SPINGO_SCRIPTS_USAGE_GUIDE.md)**
 
 ## 📖 Usage
 
-### For Single-End Reads
-
-Place all your `.fastq.gz` files in a directory, then run:
-
-``` bash
+**Single-End Reads:**
+```bash
 cd /path/to/your/fastq/files
 /path/to/spingo_single.sh <study_name> <threads>
 ```
 
-**Example:**
-
-``` bash
-cd ~/microbiome_data/gut_samples
-~/spingo-pipeline/spingo_single.sh gut_microbiome_2024 8
-```
-
-**Parameters:** - `<study_name>`: A name for your analysis (used in output filenames) - `<threads>`: Number of CPU threads to use per sample
-
-### For Paired-End Reads
-
-Files must follow the naming pattern: `SAMPLE_1.fastq.gz` and `SAMPLE_2.fastq.gz`
-
-``` bash
+**Paired-End Reads:**
+```bash
 cd /path/to/your/fastq/files
 /path/to/spingo_paired.sh <study_name> <threads>
 ```
 
-**Example:**
-
-``` bash
-cd ~/microbiome_data/soil_samples
-~/spingo-pipeline/spingo_paired.sh soil_microbiome_2024 8
-```
-
-## 📂 Input Requirements
-
-### Single-End Files
-
-```         
-sample1.fastq.gz
-sample2.fastq.gz
-sample3.fastq.gz
-```
-
-### Paired-End Files
-
-```         
-sample1_1.fastq.gz
-sample1_2.fastq.gz
-sample2_1.fastq.gz
-sample2_2.fastq.gz
-```
-
-**Important Notes:** - Files must be gzip-compressed (`.fastq.gz`) - Paired-end files must have `_1` and `_2` suffixes - All files must be in the same directory
+> **📌 For complete usage instructions, input requirements, and examples, see [SPINGO_SCRIPTS_USAGE_GUIDE.md](SPINGO_SCRIPTS_USAGE_GUIDE.md)**
 
 ## 📊 Output Files
 
@@ -255,130 +197,24 @@ A combined matrix with taxonomic abundances across all samples, suitable for dow
 
 -   `spingo_file_list.txt` - List of all output files processed
 
-## ⚙️ Advanced Configuration
+## ⚙️ Configuration
 
-### Enabling Parallel Processing
+The pipeline scripts support:
+- **Parallel Processing**: Process multiple samples simultaneously (requires GNU Parallel)
+- **Email Notifications**: Get notified when analysis completes
+- **SPINGO Parameters**: Customize classification parameters
 
-By default, scripts process samples **sequentially** (one at a time). To enable parallel processing:
-
-1.  **Install GNU Parallel** (if not already installed):
-
-    ``` bash
-    # Ubuntu/Debian
-    sudo apt-get install parallel
-
-    # CentOS/RHEL
-    sudo yum install parallel
-    ```
-
-2.  **Edit the script** (line \~92 in both scripts):
-
-    -   Comment out the sequential loop
-    -   Uncomment the parallel processing line
-
-    ``` bash
-    # Sequential processing (default - no parallel dependency required)
-    #for f in *_1.fastq.gz; do file_name=${f%_1.fastq.gz}; process_sample $file_name; done
-
-    # Parallel processing (optional - uncomment to enable, requires GNU Parallel)
-    for f in *_1.fastq.gz; do echo "${f%_1.fastq.gz}"; done | parallel -j 4 process_sample {}
-    ```
-
-3.  **Adjust parallel jobs**: Change `-j 1` to `-j N` for N parallel samples
-
-    -   **Recommendation**: Set to `(total_cores / threads_per_sample)` to maximize resource usage
-
-### Email Notifications
-
-To change the notification email, edit line 108 in both scripts:
-
-``` bash
-EMAIL="your.email@example.com"
-```
-
-To disable emails, comment out the mail command (lines 113-121).
-
-### SPINGO Parameters
-
-The scripts use these SPINGO parameters: - `-w`: Write index file for faster subsequent runs - `-d`: Reference database path - `-p`: Number of threads per sample - `-i`: Input file (streaming from stdin)
-
-To customize (e.g., change k-mer size), edit line 75:
-
-``` bash
-"${spingo_directory}" -w -k 10 -d "${reference_data}" -p "${threads}" -i /dev/stdin
-```
-
-See [SPINGO documentation](https://github.com/GuyAllard/SPINGO#spingo-parameters) for all available parameters.
+> **📌 For configuration details, see [SPINGO_SCRIPTS_USAGE_GUIDE.md](SPINGO_SCRIPTS_USAGE_GUIDE.md)**
 
 ## 🐛 Troubleshooting
 
-### "SPINGO executable not found"
+**Common Issues:**
+- **SPINGO executable not found**: Verify installation at `~/SPINGO/spingo`
+- **Reference database not found**: Run `cd ~/SPINGO/database && make`
+- **Missing dependencies**: Install `seqtk` and `perl` (see [Prerequisites](#required-software))
+- **create_species_matrix.pl not found**: See [SPINGO_SCRIPTS_USAGE_GUIDE.md](SPINGO_SCRIPTS_USAGE_GUIDE.md) for manual matrix generation
 
--   Verify SPINGO installation: `ls ~/SPINGO/spingo`
--   Check paths in script lines 28-29
--   Ensure SPINGO binary is executable: `chmod +x ~/SPINGO/spingo`
-
-### "Reference database not found"
-
--   Verify database exists: `ls ~/SPINGO/database/RDP_11.2.species.fa`
--   Re-run database generation: `cd ~/SPINGO/database && make`
-
-### "command not found: seqtk" (or parallel, perl)
-
--   Install missing dependencies (see [Prerequisites](#required-software))
--   Verify installation: `which seqtk parallel perl`
-
-### "No .fastq.gz files found"
-
--   Ensure you're in the correct directory: `ls *.fastq.gz`
--   Check file extensions match exactly (`.fastq.gz` not `.fq.gz`)
-
-### "create_species_matrix.pl not found"
-
--   Copy the Perl script to your working directory
--   Or modify line 100/99 to include full path to the script
-
-### Email not being sent
-
--   Install mail utility: `sudo apt-get install mailutils`
--   Configure mail settings for your system
--   Or disable email notifications (comment out mail command)
-
-### Out of Memory
-
--   Reduce parallel jobs: `parallel -j 1`
--   Reduce SPINGO threads parameter
--   Process samples in smaller batches
-
-## 📚 Example Workflow
-
-Complete example from raw data to results:
-
-``` bash
-# 1. Ensure SPINGO is installed
-ls ~/SPINGO/spingo ~/SPINGO/database/RDP_11.2.species.fa
-
-# 2. Prepare your data
-mkdir ~/my_microbiome_study
-cd ~/my_microbiome_study
-# ... copy your .fastq.gz files here ...
-
-# 3. Verify files
-ls -lh *.fastq.gz
-
-# 4. Run the pipeline (single-end example)
-~/spingo-pipeline/spingo_single.sh my_study_2024 4
-
-# 5. Monitor progress
-# Watch the console output for progress updates
-
-# 6. Check results
-ls -lh *_spingo.out.txt
-ls -lh species_matrix_my_study_2024.txt
-
-# 7. View sample classification
-head sample1_spingo.out.txt
-```
+> **📌 For complete troubleshooting guide, see [SPINGO_SCRIPTS_USAGE_GUIDE.md](SPINGO_SCRIPTS_USAGE_GUIDE.md)**
 
 ## 📄 License
 
@@ -393,16 +229,16 @@ See [LICENSE](LICENSE) for details.
 If you use this pipeline in your research, please cite it as:
 
 ``` bibtex
-@software{spingo_pipeline_2024,
+@software{spingo_pipeline_2026,
   author = {Dinesh, Palanimuthu},
   title = {SPINGO Pipeline: Automated 16S Microbiome Analysis},
-  year = {2024},
+  year = {2026},
   url = {https://github.com/YOUR_USERNAME/spingo-pipeline},
   version = {1.0.0}
 }
 ```
 
-**Or use this text citation:** \> Dinesh Palanimuthu. (2024). SPINGO Pipeline: Automated 16S Microbiome Analysis (Version 1.0.0) [Software]. Available from: <https://github.com/YOUR_USERNAME/spingo-pipeline>
+**Or use this text citation:** \> Dinesh Palanimuthu. (2026). SPINGO Pipeline: Automated 16S Microbiome Analysis (Version 1.0.0) [Software]. Available from: <https://github.com/YOUR_USERNAME/spingo-pipeline>
 
 **GitHub Citation:** When you push to GitHub, users can click "Cite this repository" in the sidebar to get the proper citation format automatically!
 
@@ -421,7 +257,14 @@ If you use this pipeline, please cite the original SPINGO paper:
 
 ### Development
 
-This pipeline and its documentation were developed with AI assistance (Google Gemini/Antigravity). The core shell scripts were created by Dinesh Palanimuthu, with improvements, bug fixes, and comprehensive documentation generated through AI collaboration.
+This pipeline was developed by Dinesh Palanimuthu to address practical gaps in the original SPINGO software that were encountered while processing over 10,000 gut microbiome samples. The pipeline streamlines SPINGO usage by providing:
+
+- **Automated workflow**: Eliminates manual steps and reduces user errors
+- **Robust error handling**: Validates dependencies and provides clear feedback
+- **Batch processing**: Efficiently handles large-scale microbiome studies
+- **User-friendly interface**: Simplifies complex operations into single commands
+
+The comprehensive documentation and improvements were developed with AI assistance (Google Gemini/Antigravity), combining domain expertise from large-scale microbiome analysis with modern software development practices to create a production-ready pipeline for the research community.
 
 ## 📧 Support
 
@@ -429,7 +272,7 @@ For issues with: - **This pipeline**: Open an issue in this repository - **SPING
 
 ## 🔄 Version History
 
--   **v1.0** (2024): Initial release
+-   **v1.0** (2026): Initial release
     -   Single-end and paired-end support
     -   Parallel processing added but dormant [user himself can activate it by changing "-j 1" to "-j <number of parallel jobs>"]
     -   Automated matrix generation
