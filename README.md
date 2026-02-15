@@ -4,13 +4,13 @@ A comprehensive Shell script pipeline for processing 16S microbiome sequences us
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## ⬇️ One-Click Download & Installation
+## ⬇️ One-Click SPINGO Download & Installation
 
-> **New to GitHub?** Use the options below for quick setup.
+> **New to GitHub?** Use the options below for quick SPINGO installation.
 
-[![Download SPINGO Package](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
+[![Download SPINGO Package with RDP database](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
 
-**One-Click Installation:**
+**One-Click Installation & script download:**
 ```bash
 cd ~;wget -qO- https://github.com/Dinesh23244/spingo-pipeline/archive/refs/heads/main.tar.gz | tar -xz && cd spingo-pipeline-main/ && cd ~; wget https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz; tar -xzvf ~/spingo_installed_with_RDP_database.tar.gz; cd ~/SPINGO; ./spingo -h; cd database; make; cd ~
 ```
