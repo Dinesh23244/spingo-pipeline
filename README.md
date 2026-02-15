@@ -233,6 +233,8 @@ See [LICENSE](LICENSE) for details.
 
 ### Citing This Pipeline
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18646465.svg)](https://doi.org/10.5281/zenodo.18646465)
+
 If you use this pipeline in your research, please cite it as:
 
 ``` bibtex
@@ -240,12 +242,15 @@ If you use this pipeline in your research, please cite it as:
   author = {Dinesh, Palanimuthu},
   title = {SPINGO Pipeline: Automated 16S Microbiome Analysis},
   year = {2026},
-  url = {https://github.com/YOUR_USERNAME/spingo-pipeline},
-  version = {1.0.0}
+  url = {https://github.com/Dinesh23244/spingo-pipeline},
+  doi = {10.5281/zenodo.18646465},
+  version = {1.0.3}
 }
 ```
 
-**Or use this text citation:** \> Dinesh Palanimuthu. (2026). SPINGO Pipeline: Automated 16S Microbiome Analysis (Version 1.0.0) [Software]. Available from: <https://github.com/YOUR_USERNAME/spingo-pipeline>
+**Or use this text citation:** 
+
+> Dinesh Palanimuthu. (2026). SPINGO Pipeline: Automated 16S Microbiome Analysis (Version 1.0.3). Zenodo. https://doi.org/10.5281/zenodo.18646465
 
 **GitHub Citation:** When you push to GitHub, users can click "Cite this repository" in the sidebar to get the proper citation format automatically!
 

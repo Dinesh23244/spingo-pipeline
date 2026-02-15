@@ -2,15 +2,16 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "SPINGO Pipeline: Automated 16S Microbiome Analysis"
-version: 1.0.0
-date-released: 2024-02-08
+version: 1.0.3
+date-released: 2026-02-15
+doi: 10.5281/zenodo.18646465
 authors:
   - family-names: "Palanimuthu"
     given-names: "Dinesh"
     orcid: "https://orcid.org/0000-0001-9752-9434"
     email: "dinesh2biotech@gmail.com"
     affiliation: "Indraprastha Institute of Information Technology Delhi (IIIT-Delhi)"
-repository-code: "https://github.com/YOUR_USERNAME/spingo-pipeline"  # Update when you create the repo
+repository-code: "https://github.com/Dinesh23244/spingo-pipeline"
 keywords:
   - microbiome
   - 16S rRNA
