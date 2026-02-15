@@ -10,7 +10,7 @@ Before installation, you need to download the `spingo_installed_with_RDP_databas
 
 Click the button below to download the package directly:
 
-[![Download SPINGO Package](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
+[![Download SPINGO Package with RDP database](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
 
 **Or use this direct link:**
 ```
