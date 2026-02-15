@@ -145,16 +145,23 @@ Use the one-click installation command at the top of this page for automatic set
 
 ## 📖 Usage
 
+> **💡 Tip:** For large datasets (which may take days or weeks to process), use `nohup` to run the pipeline in the background. This prevents interruption if your SSH connection drops.
+
 **Single-End Reads:**
 ```bash
 cd /path/to/your/fastq/files
-/path/to/spingo_single.sh <study_name> <threads>
+nohup bash spingo_single.sh <study_name> <threads> > run_progress.txt &
 ```
 
 **Paired-End Reads:**
 ```bash
 cd /path/to/your/fastq/files
-/path/to/spingo_paired.sh <study_name> <threads>
+nohup bash spingo_paired.sh <study_name> <threads> > run_progress.txt &
+```
+
+**Monitor progress:**
+```bash
+tail -f run_progress.txt
 ```
 
 > **📌 For complete usage instructions, input requirements, and examples, see [SPINGO_SCRIPTS_USAGE_GUIDE.md](SPINGO_SCRIPTS_USAGE_GUIDE.md)**
@@ -264,7 +271,7 @@ This pipeline was developed by Dinesh Palanimuthu to address practical gaps in t
 - **Batch processing**: Efficiently handles large-scale microbiome studies
 - **User-friendly interface**: Simplifies complex operations into single commands
 
-The comprehensive documentation and improvements were developed with AI assistance (Google Gemini/Antigravity), combining domain expertise from large-scale microbiome analysis with modern software development practices to create a production-ready pipeline for the research community.
+The comprehensive documentation and improvements were developed with AI assistance (Google - Antigravity), combining domain expertise from large-scale microbiome analysis with modern software development practices to create a production-ready pipeline for the research community.
 
 ## 📧 Support
 
@@ -284,7 +291,7 @@ For issues with: - **This pipeline**: Open an issue in this repository - **SPING
 
 Below is a visual mindmap showing the complete workflow from installation to analysis:
 
-``` mermaid
+```mermaid
 graph TD
     Start([Start: SPINGO Setup]) --> Download[📥 Download SPINGO Package]
     Download --> Install[📦 Install SPINGO]
@@ -339,8 +346,7 @@ graph TD
     style Start fill:#e1f5e1
     style Complete fill:#e1f5e1
     style TarFile fill:#fff4e1
-    style Processing fill:#e1f0ff
-    style Output fill:#ffe1f0
+    style MatrixFile fill:#ffe1f0
 ```
 
 ### Quick Reference Path

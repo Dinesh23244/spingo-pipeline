@@ -242,7 +242,7 @@ gut_microbiome_1.fastq.gz    gut_microbiome_2.fastq.gz
 cd /path/to/your/fastq/files
 
 # Run the pipeline
-bash /path/to/spingo_paired.sh <study_name> <threads>
+bash spingo_paired.sh <study_name> <threads>
 ```
 
 **Example:**
@@ -276,7 +276,7 @@ gut_microbiome.fastq.gz
 cd /path/to/your/fastq/files
 
 # Run the pipeline
-bash /path/to/spingo_single.sh <study_name> <threads>
+bash spingo_single.sh <study_name> <threads>
 ```
 
 **Example:**

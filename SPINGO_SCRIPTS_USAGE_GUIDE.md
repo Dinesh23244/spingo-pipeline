@@ -42,12 +42,27 @@ gut_microbiome_1.fastq.gz    gut_microbiome_2.fastq.gz
 cd /path/to/your/fastq/files
 
 # Run the pipeline
-bash /path/to/spingo_paired.sh <study_name> <threads>
+bash spingo_paired.sh <study_name> <threads>
 ```
 
 **Example:**
 ```bash
 bash spingo_paired.sh gut_microbiome_study 8
+```
+
+**For long-running analyses (Recommended for large datasets):**
+
+> **💡 Tip:** When processing large numbers of samples (which may take days or weeks), use `nohup` to run the pipeline in the background. This prevents interruption if your SSH connection drops and allows you to monitor progress remotely.
+
+```bash
+# Navigate to directory containing your paired FASTQ files
+cd /path/to/your/fastq/files
+
+# Run in background with progress logging
+nohup bash spingo_paired.sh <study_name> <threads> > run_progress.txt &
+
+# Monitor progress in real-time
+tail -f run_progress.txt
 ```
 
 **Output:**
@@ -76,12 +91,27 @@ gut_microbiome.fastq.gz
 cd /path/to/your/fastq/files
 
 # Run the pipeline
-bash /path/to/spingo_single.sh <study_name> <threads>
+bash spingo_single.sh <study_name> <threads>
 ```
 
 **Example:**
 ```bash
 bash spingo_single.sh 16S_amplicon_study 8
+```
+
+**For long-running analyses (Recommended for large datasets):**
+
+> **💡 Tip:** When processing large numbers of samples (which may take days or weeks), use `nohup` to run the pipeline in the background. This prevents interruption if your SSH connection drops and allows you to monitor progress remotely.
+
+```bash
+# Navigate to directory containing your FASTQ files
+cd /path/to/your/fastq/files
+
+# Run in background with progress logging
+nohup bash spingo_single.sh <study_name> <threads> > run_progress.txt &
+
+# Monitor progress in real-time
+tail -f run_progress.txt
 ```
 
 **Output:**
