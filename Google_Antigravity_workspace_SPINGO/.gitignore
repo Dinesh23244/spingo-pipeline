@@ -1,0 +1,180 @@
+# SPINGO Pipeline - Gitignore
+
+# ============================================================
+# Data Files
+# ============================================================
+
+# Input files - FASTQ sequences
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# FASTA files (intermediate)
+*.fasta
+*.fa
+*.fna
+
+# ============================================================
+# Output Files
+# ============================================================
+
+# SPINGO output files
+*_spingo.out.txt
+*.spingo.out.txt
+
+# Species/abundance matrices
+species_matrix_*.txt
+abundance_table_*.txt
+spingo_file_list.txt
+
+# ============================================================
+# Log and Temporary Files
+# ============================================================
+
+# Log files
+*.log
+*.out
+*.err
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Backup files
+*.bak
+*~
+*.swp
+*.swo
+
+# ============================================================
+# Database Files (large, should not be committed)
+# ============================================================
+
+# RDP database files
+RDP_*.fa
+RDP_*.fasta
+*.species.fa
+database/
+*.idx
+*.index
+
+# ============================================================
+# System Files
+# ============================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================
+# IDE and Editor Files
+# ============================================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# ============================================================
+# Compressed Archives
+# ============================================================
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Exception: Keep example archives if any
+!examples/*.tar.gz
+!examples/*.zip
+
+# ============================================================
+# Python (if using Python scripts)
+# ============================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.env
+
+# ============================================================
+# R (if using R for downstream analysis)
+# ============================================================
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# ============================================================
+# Computational Results
+# ============================================================
+
+# Large result directories
+results/
+output/
+data/
+
+# Exception: Keep example results
+!examples/results/
+!examples/output/
+
+# ============================================================
+# Version Control
+# ============================================================
+
+# Git
+.git/
+*.orig
+
+# ============================================================
+# Email and Personal Info
+# ============================================================
+
+# Email configurations (may contain sensitive info)
+email_config.txt
+.mailrc

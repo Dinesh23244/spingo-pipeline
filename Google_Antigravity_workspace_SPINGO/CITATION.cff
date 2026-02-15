@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "SPINGO Pipeline: Automated 16S Microbiome Analysis"
+version: 1.0.0
+date-released: 2024-02-08
+authors:
+  - family-names: "Palanimuthu"
+    given-names: "Dinesh"
+    orcid: "https://orcid.org/0000-0001-9752-9434"
+    email: "dinesh2biotech@gmail.com"
+    affiliation: "Indraprastha Institute of Information Technology Delhi (IIIT-Delhi)"
+repository-code: "https://github.com/YOUR_USERNAME/spingo-pipeline"  # Update when you create the repo
+keywords:
+  - microbiome
+  - 16S rRNA
+  - SPINGO
+  - metagenomics
+  - taxonomic classification
+  - bioinformatics
+license: GPL-3.0
+abstract: "An automated pipeline for processing 16S microbiome sequences using SPINGO (SPecies level IdentificatioN of metaGenOmic amplicons). The pipeline handles single-end and paired-end FASTQ files, performs taxonomic classification, and generates species abundance matrices for downstream analysis."
+references:
+  - type: software
+    authors:
+      - family-names: "Allard"
+        given-names: "Guy"
+      - family-names: "Ryan"
+        given-names: "Fergus J."
+      - family-names: "Jeffery"
+        given-names: "Ian B."
+      - family-names: "Claesson"
+        given-names: "Marcus J."
+    title: "SPINGO: a rapid species-classifier for microbial amplicon sequences"
+    journal: "BMC Bioinformatics"
+    year: 2015
+    volume: 16
+    issue: 1
+    pages: 324
+    doi: "10.1186/s12859-015-0747-1"

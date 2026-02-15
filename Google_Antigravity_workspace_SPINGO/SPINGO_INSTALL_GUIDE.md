@@ -1,0 +1,369 @@
+# SPINGO Installation Guide
+
+This guide provides step-by-step instructions for installing SPINGO and setting up the RDP database.
+
+## 📥 Downloading the SPINGO Package
+
+Before installation, you need to download the `spingo_installed_with_RDP_database.tar.gz` file. This is a large file (~500 MB) containing the pre-configured SPINGO installation with the RDP database.
+
+### Method 1: One-Click Download (Recommended)
+
+Click the button below to download the package directly:
+
+[![Download SPINGO Package](https://img.shields.io/badge/Download-spingo__installed__with__RDP__database.tar.gz-blue?style=for-the-badge&logo=github)](https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz)
+
+**Or use this direct link:**
+```
+https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz
+```
+
+**Using command line:**
+```bash
+# Download using wget
+wget https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz
+
+# Or using curl
+curl -L -O https://github.com/Dinesh23244/spingo-pipeline/raw/main/spingo_installed_with_RDP_database.tar.gz
+```
+
+### Method 2: GitHub LFS (Alternative)
+
+If you prefer to use Git with Large File Storage (LFS):
+
+**Prerequisites:**
+- Git installed on your system
+- Git LFS extension installed
+
+**Install Git LFS (if not already installed):**
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-get install git-lfs
+git lfs install
+```
+
+**CentOS/RHEL:**
+```bash
+sudo yum install git-lfs
+git lfs install
+```
+
+**macOS:**
+```bash
+brew install git-lfs
+git lfs install
+```
+
+**Download using Git LFS:**
+```bash
+# Clone the repository with LFS files
+git clone https://github.com/Dinesh23244/spingo-pipeline.git
+cd spingo-pipeline
+
+# Pull the large files
+git lfs pull
+```
+
+> **Note:** The large file will be automatically downloaded when you clone the repository if Git LFS is properly configured.
+
+---
+
+## Prerequisites
+
+- **Linux operating system** (SPINGO is designed for Linux environments)
+- Python 3.x installed
+- `tar` and `gzip` utilities (usually pre-installed)
+- Sufficient disk space for the database files
+
+## Installation Steps
+
+### Step 1: Copy the SPINGO Archive to Home Directory
+
+Copy the compressed SPINGO archive file to your home directory:
+
+```bash
+cp spingo_installed_with_RDP_database.tar.gz ~
+```
+
+**What this does:** Copies the SPINGO installation archive to your home directory (`~`).
+
+---
+
+### Step 2: Extract the Archive
+
+Navigate to your home directory and extract the compressed archive:
+
+```bash
+cd ~
+tar -xzvf spingo_installed_with_RDP_database.tar.gz
+```
+
+**What this does:** 
+- `tar -xzvf` extracts the archive
+- `x` = extract
+- `z` = decompress gzip
+- `v` = verbose (shows files being extracted)
+- `f` = file name follows
+
+**Expected output:** You should see a list of files being extracted, including the `SPINGO/` directory.
+
+---
+
+### Step 3: Navigate to SPINGO Directory
+
+Change to the newly extracted SPINGO directory:
+
+```bash
+cd SPINGO
+```
+
+---
+
+### Step 4: Verify SPINGO Installation
+
+Test that SPINGO is properly installed by viewing the help message:
+
+```bash
+./spingo -h
+```
+
+**What this does:** Runs SPINGO with the `-h` (help) flag to display usage information.
+
+**Expected output:** You should see the SPINGO help message with available options and parameters.
+
+> **Note:** If you encounter an "exec format error", you may need to:
+> - Use the appropriate binary from `dist/64bit/` or `dist/32bit/` directory
+> - Or recompile SPINGO from source for your system architecture
+
+---
+
+### Step 5: Build the Database
+
+Navigate to the database directory and build the RDP database:
+
+```bash
+cd database
+make
+```
+
+**What this does:** 
+- Changes to the `database/` subdirectory
+- Runs the makefile to generate the SPINGO database from RDP reference sequences
+
+**Expected output:** 
+```
+Generating database file RDP_11.2.species.fa
+Done
+```
+
+**Build process:**
+- Decompresses the bacterial and archaeal reference sequences
+- Processes them through the taxonomy mapping
+- Creates the final database file `RDP_11.2.species.fa`
+
+---
+
+### Step 6: Verify Database Installation
+
+Check that the database file was created successfully:
+
+```bash
+ls -lh RDP_11.2.species.fa
+```
+
+**Expected output:** You should see the database file with its size information.
+
+---
+
+## Complete Installation Command (One-liner)
+
+If you prefer to run all commands in sequence, use this single command:
+
+> **⚠️ Important:** Before running this command, you must first navigate to the directory containing the `spingo_installed_with_RDP_database.tar.gz` file.
+
+```bash
+# First, navigate to the directory containing the tar file
+cd /path/to/directory/containing/tar/file
+
+# Then run the installation command
+cp spingo_installed_with_RDP_database.tar.gz ~; tar -xzvf ~/spingo_installed_with_RDP_database.tar.gz; cd ~/SPINGO; ./spingo -h; cd database; make
+```
+
+**What this does:** Executes all installation steps sequentially using semicolons (`;`) to separate commands.
+
+---
+
+## Post-Installation: Using SPINGO Pipeline Scripts
+
+After successful installation, you can use the automated pipeline scripts provided in this repository to process your sequencing data.
+
+### Available Pipeline Scripts
+
+This repository provides two automated scripts:
+
+1. **`spingo_paired.sh`** - For paired-end sequencing data
+2. **`spingo_single.sh`** - For single-end sequencing data
+
+---
+
+### Prerequisites for Pipeline Scripts
+
+Before running the scripts, ensure you have:
+
+- ✅ SPINGO successfully installed in `~/SPINGO/` (completed steps above)
+- ✅ **Required dependencies:**
+  - `seqtk` (sequence toolkit)
+  - `perl` (for matrix creation)
+- ✅ **Optional dependencies:**
+  - `GNU Parallel` (for parallel processing - scripts default to sequential)
+  - `mail` utility (for email notifications)
+
+> **📌 Note:** The scripts automatically detect your HOME directory and look for SPINGO installation at `~/SPINGO/`. No manual path configuration needed!
+
+---
+
+### Using spingo_paired.sh (Paired-End Data)
+
+**Input file naming convention:**
+- Forward reads: `SAMPLE_1.fastq.gz`
+- Reverse reads: `SAMPLE_2.fastq.gz`
+
+**Examples of paired-end files:**
+```
+sample001_1.fastq.gz    sample001_2.fastq.gz
+sample002_1.fastq.gz    sample002_2.fastq.gz
+patient_A_1.fastq.gz    patient_A_2.fastq.gz
+gut_microbiome_1.fastq.gz    gut_microbiome_2.fastq.gz
+```
+
+**Usage:**
+```bash
+# Navigate to directory containing your paired FASTQ files
+cd /path/to/your/fastq/files
+
+# Run the pipeline
+bash spingo_paired.sh <study_name> <threads>
+```
+
+**Example:**
+```bash
+bash spingo_paired.sh gut_microbiome_study 8
+```
+
+**Output:**
+- Individual results: `SAMPLE_spingo.out.txt` for each sample
+- Final matrix: `species_matrix_<study_name>.txt`
+
+---
+
+### Using spingo_single.sh (Single-End Data)
+
+**Input file naming convention:**
+- Single reads: `SAMPLE.fastq.gz`
+
+**Examples of single-end files:**
+```
+sample001.fastq.gz
+sample002.fastq.gz
+patient_A.fastq.gz
+gut_microbiome.fastq.gz
+16S_amplicon_run1.fastq.gz
+```
+
+**Usage:**
+```bash
+# Navigate to directory containing your FASTQ files
+cd /path/to/your/fastq/files
+
+# Run the pipeline
+bash spingo_single.sh <study_name> <threads>
+```
+
+**Example:**
+```bash
+bash spingo_single.sh 16S_amplicon_study 8
+```
+
+**Output:**
+- Individual results: `SAMPLE_spingo.out.txt` for each sample
+- Final matrix: `species_matrix_<study_name>.txt`
+
+---
+
+### Pipeline Workflow
+
+The pipeline operates in two stages:
+
+**Paired-End:**
+```
+Stage 1 (Per Sample):
+  FASTQ.gz → Decompress → Merge R1+R2 → Convert to FASTA → SPINGO 
+  → Output: sample_spingo.out.txt
+
+Stage 2 (All Samples):
+  All *_spingo.out.txt files → Perl Script (create_species_matrix.pl)
+  → Output: species_matrix_<study_name>.txt
+```
+
+**Single-End:**
+```
+Stage 1 (Per Sample):
+  FASTQ.gz → Decompress → Convert to FASTA → SPINGO
+  → Output: sample_spingo.out.txt
+
+Stage 2 (All Samples):
+  All *_spingo.out.txt files → Perl Script (create_species_matrix.pl)
+  → Output: species_matrix_<study_name>.txt
+```
+
+---
+
+### Manual SPINGO Usage
+
+If you prefer to run SPINGO manually without the pipeline scripts:
+
+```bash
+# Basic usage
+./spingo -d database/RDP_11.2.species.fa -i your_sequences.fasta
+
+# View all options
+./spingo -h
+```
+
+---
+
+## Directory Structure
+
+After installation, your SPINGO directory should look like this:
+
+```
+SPINGO/
+├── spingo              # Main executable
+├── spindex             # Indexing tool
+├── database/
+│   ├── RDP_11.2.species.fa       # Generated database file
+│   ├── taxonomy.map              # Taxonomy mapping
+│   └── makefile                  # Database build script
+├── dist/               # Distribution files and utilities
+├── source/             # Source code
+└── README.md           # Documentation
+```
+
+---
+
+## Additional Resources
+
+- **Detailed usage guide:** See [SPINGO_USAGE_GUIDE.md](SPINGO_USAGE_GUIDE.md) for comprehensive instructions
+- **Examples:** Check the `examples/` directory for sample data and workflows
+- **Documentation:** Read [README.md](README.md) for more information
+- **Citation:** Review the publication data for proper citation
+
+---
+
+## Support
+
+For issues or questions:
+- Check the official SPINGO repository
+- Review the publication for methodology details
+- Consult the README.md for additional documentation
+
