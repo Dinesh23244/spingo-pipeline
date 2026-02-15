@@ -241,6 +241,10 @@ gut_microbiome_1.fastq.gz    gut_microbiome_2.fastq.gz
 # Navigate to directory containing your paired FASTQ files
 cd /path/to/your/fastq/files
 
+# Copy required scripts to working directory
+cp ~/spingo-pipeline-main/spingo_paired.sh .
+cp ~/spingo-pipeline-main/create_species_matrix.pl .
+
 # Run the pipeline
 bash spingo_paired.sh <study_name> <threads>
 ```
@@ -274,6 +278,10 @@ gut_microbiome.fastq.gz
 ```bash
 # Navigate to directory containing your FASTQ files
 cd /path/to/your/fastq/files
+
+# Copy required scripts to working directory
+cp ~/spingo-pipeline-main/spingo_single.sh .
+cp ~/spingo-pipeline-main/create_species_matrix.pl .
 
 # Run the pipeline
 bash spingo_single.sh <study_name> <threads>

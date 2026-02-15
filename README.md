@@ -109,7 +109,7 @@ Use the one-click installation command at the top of this page for automatic set
 
 ### Option 2: Clone This Repository
 
-**If the repository contains large files (Git LFS):**
+**This repository contains large files tracked with Git LFS:**
 
 1. **Install Git LFS:**
    ```bash
@@ -147,13 +147,27 @@ Use the one-click installation command at the top of this page for automatic set
 
 **Single-End Reads:**
 ```bash
+# Navigate to your data directory
 cd /path/to/your/fastq/files
+
+# Copy required scripts to working directory
+cp ~/spingo-pipeline-main/spingo_single.sh .
+cp ~/spingo-pipeline-main/create_species_matrix.pl .
+
+# Run in background
 nohup bash spingo_single.sh <study_name> <threads> > run_progress.txt &
 ```
 
 **Paired-End Reads:**
 ```bash
+# Navigate to your data directory
 cd /path/to/your/fastq/files
+
+# Copy required scripts to working directory
+cp ~/spingo-pipeline-main/spingo_paired.sh .
+cp ~/spingo-pipeline-main/create_species_matrix.pl .
+
+# Run in background
 nohup bash spingo_paired.sh <study_name> <threads> > run_progress.txt &
 ```
 
